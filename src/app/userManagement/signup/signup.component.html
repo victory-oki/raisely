@@ -1,0 +1,152 @@
+<app-success-modal></app-success-modal>
+<div class="container">
+  <div class="container__left"></div>
+  <div class="container__right">
+    <header class="header">
+      <h6 class="header__title">Raisely</h6>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">Blog</li>
+          <li class="nav__item">About us</li>
+        </ul>
+      </nav>
+    </header>
+    <h4 class="heading__4">Be a partner in our women's foundation program</h4>
+
+    <form [formGroup]="signupForm" class="form">
+      <div class="form__group">
+        <label class="form__label" for="firstname">First Name</label>
+        <input
+          aria-describedby="emailHelp"
+          id="firstname"
+          class="form__control"
+          [class.error]="isInvalid('firstName')"
+          [class.success]="!isInvalid('firstName')"
+          formControlName="firstName"
+          placeholder="Your first name"
+          type="text"
+        />
+        <em
+          *ngIf="firstName.invalid && firstName.dirty"
+          class="help-block text-error"
+        >
+          First Name is required
+        </em>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="lastname">Last Name</label>
+        <input
+          aria-describedby="emailHelp"
+          class="form__control"
+          id="lastname"
+          [class.error]="isInvalid('lastName')"
+          [class.success]="!isInvalid('lastName')"
+          formControlName="lastName"
+          placeholder="Your last name"
+          type="text"
+        />
+        <em
+          *ngIf="lastName.invalid && lastName.dirty"
+          class="help-block text-error"
+        >
+          Last Name is required
+        </em>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="email">Email</label>
+        <input
+          aria-describedby="emailHelp"
+          class="form__control"
+          id="email"
+          [class.error]="isInvalid('email')"
+          [class.success]="!isInvalid('email')"
+          formControlName="email"
+          placeholder="Your email"
+          type="email"
+        />
+        <em
+          *ngIf="email.invalid && email.dirty && !email.hasError('pattern')"
+          class="help-block text-error"
+        >
+          Email is required
+        </em>
+        <em
+          *ngIf="email.invalid && email.dirty && email.hasError('pattern')"
+          class="help-block text-error"
+        >
+          Email is invalid
+        </em>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="password">Password</label>
+        <input
+          class="form__control"
+          id="password"
+          [class.error]="isInvalid('password')"
+          [class.success]="!isInvalid('password')"
+          formControlName="password"
+          placeholder="Your password"
+          type="password"
+        />
+        <em
+          *ngIf="password.invalid && password.dirty"
+          class="help-block text-error"
+        >
+          Password is required
+        </em>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="c-password">Confirm Password</label>
+        <input
+          class="form__control"
+          id="c-password"
+          [class.error]="isInvalid('confirmPassword')"
+          [class.success]="!isInvalid('confirmPassword')"
+          formControlName="confirmPassword"
+          placeholder="Your password"
+          type="password"
+        />
+        <em
+          *ngIf="confirmPassword.invalid && confirmPassword.dirty"
+          class="help-block text-error"
+        >
+          Confirm Password is required
+        </em>
+        <em
+          *ngIf="
+            signupForm.hasError('notSame') &&
+            !confirmPassword.invalid &&
+            confirmPassword.dirty
+          "
+          class="help-block text-error"
+        >
+          Confirm Password Doesn't match
+        </em>
+      </div>
+    </form>
+    <footer class="footer">
+      <button
+        class="footer__btn"
+        (click)="submit(signupForm.value)"
+        [class.hasLoader]="isLoading"
+        [disabled]="signupForm.invalid || isLoading"
+      >
+        <div class="loadPage" *ngIf="isLoading">
+          <div class="loader__row">
+            <div class="loader"></div>
+          </div>
+        </div>
+        <span [class.invisible]="isLoading">
+          Sign me up
+        </span>
+      </button>
+      <div class="footer__text">Terms & Condition | Privacy Policy</div>
+    </footer>
+    <button
+      data-toggle="modal"
+      data-target="#successModal"
+      #successModal
+      style="display: none;"
+    ></button>
+  </div>
+</div>

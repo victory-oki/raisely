@@ -1,1 +1,75 @@
+$color-primary: #ed1f3e;
+$color-secondary: #2a3a64;
 /* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: "DM Sans", sans-serif;
+  // font-family: 'Liu Jian Mao Cao', cursive;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "DM Sans", sans-serif;
+}
+
+.hasLoader {
+  position: relative;
+}
+.loadPage {
+  background: rgba(0, 0, 0, 0);
+  display: inline-block;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // height: calc(100vh - 500px);
+}
+
+.loader {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  padding: 0px;
+  border-radius: 100%;
+  border: 5px solid;
+  border-top-color: $color-primary;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  border-left-color: $color-primary;
+  border-right-color: rgba(255, 255, 255, 0.3);
+  -webkit-animation: loader 1s ease-in-out infinite;
+  animation: loader 1s ease-in-out infinite;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loader {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 50%;
+  }
+}
